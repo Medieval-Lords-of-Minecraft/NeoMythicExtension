@@ -164,6 +164,9 @@ public class MythicExt extends JavaPlugin implements Listener {
 		MythicLineConfig cfg = event.getConfig();
 
 		switch (name) {
+		case "givepartybossexp":
+			mechanic = new GivePartyBossExpMechanic(cfg);
+			break;
 		case "elementdamage":
 			mechanic = new ElementDamage(MythicBukkit.inst().getSkillManager(), cfg.getLine(), cfg);
 			break;
