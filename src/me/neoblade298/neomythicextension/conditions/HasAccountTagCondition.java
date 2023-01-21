@@ -7,7 +7,7 @@ import com.sucy.skill.SkillAPI;
 import io.lumine.mythic.api.adapters.AbstractEntity;
 import io.lumine.mythic.api.config.MythicLineConfig;
 import io.lumine.mythic.api.skills.conditions.IEntityCondition;
-import me.neoblade298.neocore.NeoCore;
+import me.neoblade298.neocore.bukkit.NeoCore;
 
 public class HasAccountTagCondition implements IEntityCondition {
 	protected String tag;

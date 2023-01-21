@@ -9,8 +9,8 @@ import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.api.skills.ThreadSafetyLevel;
 import io.lumine.mythic.core.mobs.ActiveMob;
-import me.neoblade298.neocore.info.BossInfo;
-import me.neoblade298.neocore.info.InfoAPI;
+import me.neoblade298.neocore.bukkit.info.BossInfo;
+import me.neoblade298.neocore.bukkit.info.InfoAPI;
 import me.neoblade298.neoresearch.Research;
 
 public class ResearchPointsBossMechanic implements ITargetedEntitySkill {

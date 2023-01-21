@@ -8,7 +8,7 @@ import io.lumine.mythic.api.skills.ITargetedEntitySkill;
 import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.api.skills.ThreadSafetyLevel;
-import me.neoblade298.neocore.bungee.BungeeAPI;
+import me.neoblade298.neocore.bukkit.bungee.BungeeAPI;
 
 public class PluginMessageMechanic implements ITargetedEntitySkill {
 
@@ -30,7 +30,7 @@ public class PluginMessageMechanic implements ITargetedEntitySkill {
 		try {
 			if (target.getBukkitEntity() instanceof Player) {
 				Player p = (Player) target.getBukkitEntity();
-				BungeeAPI.sendPluginMessage(p, this.channel, p.getUniqueId().toString(), this.msg);
+				BungeeAPI.sendPluginMessage(p, this.channel, new String[] {p.getUniqueId().toString(), this.msg} );
 				return SkillResult.SUCCESS;
 			}
 			return SkillResult.INVALID_TARGET;

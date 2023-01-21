@@ -3,8 +3,8 @@ package me.neoblade298.neomythicextension.conditions;
 import io.lumine.mythic.api.config.MythicLineConfig;
 import io.lumine.mythic.api.skills.SkillCaster;
 import io.lumine.mythic.api.skills.conditions.ICasterCondition;
-import me.neoblade298.neocore.NeoCore;
-import me.neoblade298.neocore.instancing.InstanceType;
+import me.neoblade298.neocore.bukkit.NeoCore;
+import me.neoblade298.neocore.bukkit.InstanceType;
 
 public class IsInstanceCondition implements ICasterCondition {
 	protected boolean action;
