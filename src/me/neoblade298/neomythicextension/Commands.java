@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 
 import io.lumine.mythic.bukkit.MythicBukkit;
 import io.lumine.mythic.core.mobs.ActiveMob;
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
 import me.neoblade298.neomythicextension.objects.SpawnerDefinition;
 import me.neoblade298.neomythicextension.objects.SpawnerMaker;
 
@@ -177,10 +177,10 @@ public class Commands implements CommandExecutor{
 			if(args[0].equalsIgnoreCase("debug")) {
 				MythicExt.debug = !MythicExt.debug;
 				if (MythicExt.debug) {
-					Util.msg(sender, "&7Debug set to &etrue");
+					BukkitUtil.msg(sender, "&7Debug set to &etrue");
 				}
 				else {
-					Util.msg(sender, "&7Debug set to &efalse");
+					BukkitUtil.msg(sender, "&7Debug set to &efalse");
 				}
 		    	return true;
 		    }
