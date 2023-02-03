@@ -30,7 +30,7 @@ public class PluginMessageMechanic implements ITargetedEntitySkill {
 		try {
 			if (target.getBukkitEntity() instanceof Player) {
 				Player p = (Player) target.getBukkitEntity();
-				BungeeAPI.sendPluginMessage(p, this.channel, new String[] {p.getUniqueId().toString(), this.msg} );
+				BungeeAPI.sendPluginMessage(this.channel, new String[] { p.getUniqueId().toString(), this.msg} );
 				return SkillResult.SUCCESS;
 			}
 			return SkillResult.INVALID_TARGET;
