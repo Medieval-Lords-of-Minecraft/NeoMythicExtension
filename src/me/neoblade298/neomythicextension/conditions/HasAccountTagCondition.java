@@ -23,7 +23,7 @@ public class HasAccountTagCondition implements IEntityCondition {
     	try {
 			Player p = (Player) t.getBukkitEntity();
 			int account = SkillAPI.getPlayerAccountData(p).getActiveId();
-			return NeoCore.getPlayerTags("questaccount_" + account).exists(tag, p.getUniqueId()) ^ negate;
+			return NeoCore.getPlayerTags("questaccount" + account).exists(tag, p.getUniqueId()) ^ negate;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
