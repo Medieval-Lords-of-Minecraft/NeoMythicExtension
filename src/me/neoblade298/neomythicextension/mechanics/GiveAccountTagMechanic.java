@@ -30,7 +30,7 @@ public class GiveAccountTagMechanic implements ITargetedEntitySkill {
 			if (target.getBukkitEntity() instanceof Player) {
 				Player p = (Player) target.getBukkitEntity();
 				int account = SkillAPI.getPlayerAccountData(p).getActiveId();
-				NeoCore.getPlayerTags("questaccount_" + account).set(tag, p.getUniqueId());
+				NeoCore.getPlayerTags("questaccount" + account).set(tag, p.getUniqueId());
 				return SkillResult.SUCCESS;
 			}
 			return SkillResult.INVALID_TARGET;
