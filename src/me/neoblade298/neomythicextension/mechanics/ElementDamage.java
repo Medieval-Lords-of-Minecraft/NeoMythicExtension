@@ -30,6 +30,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -68,8 +69,8 @@ public class ElementDamage extends DamagingMechanic implements ITargetedEntitySk
     @Nullable
     private final String elementName;
 
-    public ElementDamage(SkillExecutor manager, String line, MythicLineConfig config) {
-        super(manager, line, config);
+    public ElementDamage(SkillExecutor manager, File file, String line, MythicLineConfig config) {
+        super(manager, file, line, config);
 
         this.amount = PlaceholderDouble.of(config.getString(new String[]{"amount", "a"}, "1", new String[0]));
         String typesString = config.getString(new String[]{"type", "t", "types"}, null, new String[0]);

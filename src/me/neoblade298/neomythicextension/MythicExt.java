@@ -122,6 +122,9 @@ public class MythicExt extends JavaPlugin implements Listener {
 		case "hasaccounttag":
 			condition = new HasAccountTagCondition(cfg);
 			break;
+		case "hitbarrier":
+			condition = new HitBarrierCondition(cfg);
+			break;
 		}
 		if (condition != null) {
 			event.register(condition);
@@ -168,7 +171,7 @@ public class MythicExt extends JavaPlugin implements Listener {
 			mechanic = new GivePartyBossExpMechanic(cfg);
 			break;
 		case "elementdamage":
-			mechanic = new ElementDamage(MythicBukkit.inst().getSkillManager(), cfg.getLine(), cfg);
+			mechanic = new ElementDamage(MythicBukkit.inst().getSkillManager(), null, cfg.getLine(), cfg);
 			break;
 		case "nscore":
 			mechanic = new ModScore(cfg, this);
@@ -232,6 +235,12 @@ public class MythicExt extends JavaPlugin implements Listener {
 			break;
 		case "pluginmessage":
 			mechanic = new PluginMessageMechanic(cfg);
+			break;
+		case "nrdamage":
+			mechanic = new NeoRogueDamage(cfg);
+			break;
+		case "nrinit":
+			mechanic = new NeoRogueInitialize(cfg);
 			break;
 		}
 		if (mechanic != null) {
