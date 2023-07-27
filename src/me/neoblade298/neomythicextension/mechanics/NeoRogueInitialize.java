@@ -55,7 +55,7 @@ public class NeoRogueInitialize implements INoTargetSkill {
 			UUID uuid = caster.getEntity().getUniqueId();
 			FightData fd = new FightData((Damageable) caster.getEntity().getBukkitEntity());
 			for (Entry<BuffType, Double> ent : buffs.entrySet()) {
-				fd.addBuff(false, true, ent.getKey(), ent.getValue());
+				fd.addBuff(uuid, false, true, ent.getKey(), ent.getValue());
 			}
 			FightInstance.putFightData(uuid, fd);
 			return SkillResult.SUCCESS;
