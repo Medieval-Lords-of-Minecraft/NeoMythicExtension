@@ -7,6 +7,7 @@ import io.lumine.mythic.api.skills.ITargetedEntitySkill;
 import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.api.skills.ThreadSafetyLevel;
+import me.neoblade298.neorogue.session.fights.DamageMeta;
 import me.neoblade298.neorogue.session.fights.DamageType;
 import me.neoblade298.neorogue.session.fights.FightInstance;
 
@@ -31,8 +32,9 @@ public class NeoRogueDamage implements ITargetedEntitySkill {
 		try {
 			double level = data.getCaster().getLevel();
 			final double fAmount = level > 5 ? amount * (level / 5) : amount;
-			if (hitBarrier) FightInstance.dealBarrieredDamage((Damageable) data.getCaster().getEntity().getBukkitEntity(), type, fAmount, (Damageable) target.getBukkitEntity());
-			else FightInstance.dealDamage((Damageable) data.getCaster().getEntity().getBukkitEntity(), type, fAmount, (Damageable) target.getBukkitEntity());
+			DamageMeta meta = new DamageMeta(fAmount, type);
+			meta.setHitBarrier(hitBarrier);
+			FightInstance.dealDamage((Damageable) data.getCaster().getEntity().getBukkitEntity(), meta, (Damageable) target.getBukkitEntity());
 			return SkillResult.SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
