@@ -69,7 +69,7 @@ public class NeoRogueBarrier implements ITargetedEntitySkill {
 			for (Entry<BuffType, Double> ent : this.buffs.entrySet()) {
 				buffs.put(ent.getKey(), new Buff(owner.getUniqueId(), 0, ent.getValue()));
 			}
-			Barrier b = new Barrier((LivingEntity) data.getCaster().getEntity().getBukkitEntity(), width, forward, height, forwardOffset, null, true);
+			Barrier b = new Barrier((LivingEntity) data.getCaster().getEntity().getBukkitEntity(), width, forward, height, forwardOffset, buffs, true);
 			fd.getInstance().addBarrier(fd, id, b, duration);
 			return SkillResult.SUCCESS;
 		} catch (Exception e) {
