@@ -40,7 +40,7 @@ public class NeoRogueBarrier implements ITargetedEntitySkill {
 		forward = config.getDouble(new String[] { "f", "forward" }, 2);
 		forwardOffset = config.getDouble(new String[] { "fo", "forwardoffset" }, 2);
 		rotateY = config.getDouble(new String[] { "ry", "rotatey" }, 2);
-		duration = config.getInteger(new String[] { "d", "duration" }, 2);
+		duration = config.getInteger(new String[] { "d", "duration" }, 40);
 		id = config.getString("id");
 		
 		SkillManager sm = MythicBukkit.inst().getSkillManager();
@@ -69,7 +69,7 @@ public class NeoRogueBarrier implements ITargetedEntitySkill {
 			for (Entry<BuffType, Double> ent : this.buffs.entrySet()) {
 				buffs.put(ent.getKey(), new Buff(owner.getUniqueId(), 0, ent.getValue()));
 			}
-			Barrier b = new Barrier((LivingEntity) data.getCaster().getEntity().getBukkitEntity(), width, forward, height, forwardOffset, null, false);
+			Barrier b = new Barrier((LivingEntity) data.getCaster().getEntity().getBukkitEntity(), width, forward, height, forwardOffset, null, true);
 			fd.getInstance().addBarrier(fd, id, b, duration);
 			return SkillResult.SUCCESS;
 		} catch (Exception e) {
