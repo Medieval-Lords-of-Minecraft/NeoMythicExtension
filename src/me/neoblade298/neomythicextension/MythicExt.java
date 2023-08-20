@@ -239,9 +239,6 @@ public class MythicExt extends JavaPlugin implements Listener {
 		case "nrdamage":
 			mechanic = new NeoRogueDamage(cfg);
 			break;
-		case "nrinit":
-			mechanic = new NeoRogueInitialize(cfg);
-			break;
 		case "nrbarrier":
 			mechanic = new NeoRogueBarrier(cfg);
 			break;
