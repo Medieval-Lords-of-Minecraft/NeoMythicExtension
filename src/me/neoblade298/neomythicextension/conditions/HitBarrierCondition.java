@@ -49,7 +49,7 @@ public class HitBarrierCondition implements ISkillMetaComparisonCondition {
 			}
 			
 			HashSet<AbstractEntity> targets = new HashSet<AbstractEntity>();
-			targets.add(BukkitAdapter.adapt(barrierOwner.getPlayer()));
+			targets.add(BukkitAdapter.adapt(barrierOwner.getEntity()));
 			
 			if (skill == null) return false;
 			skill.execute(SkillTrigger.get("API"), data.getCaster(), data.getTrigger(),
