@@ -35,27 +35,35 @@ public class HitBarrierCondition implements ISkillMetaComparisonCondition {
 		FightData barrierOwner = null;
 		for (FightData fd : FightInstance.getUserData().values()) {
 			Barrier b = fd.getBarrier();
-			if (b == null) continue;
-			
-			if (b.collides(loc)) {
-				tracker.projectileEnd();
-				tracker.setCancelled();
-				loc.getWorld().playSound(loc, Sound.ITEM_SHIELD_BLOCK, 1F, 1F);
-				barrierOwner = fd;
-			}
-			
-			if (barrierOwner == null) {
-				continue;
-			}
-			
-			HashSet<AbstractEntity> targets = new HashSet<AbstractEntity>();
-			targets.add(BukkitAdapter.adapt(barrierOwner.getEntity()));
-			
-			if (skill == null) return false;
-			skill.execute(SkillTrigger.get("API"), data.getCaster(), data.getTrigger(),
-					data.getCaster().getLocation(), targets, null, 1F);
-			return false;
+			checkBarrier(data, b, tracker, loc, barrierOwner);
+		}
+		for (Barrier b : FightInstance.getUserBarriers().values()) {
+			checkBarrier(data, b, tracker, loc);
 		}
 		return true;
+	}
+	
+	private void checkBarrier(SkillMetadata data, Barrier b, ProjectileMechanicTracker tracker, Location loc) {
+		if (b.getOwner() == null) checkBarrier(data, b, tracker, loc, null);
+		checkBarrier(data, b, tracker, loc, FightInstance.getFightData(b.getOwner().getUniqueId()));
+	}
+	
+	private void checkBarrier(SkillMetadata data, Barrier b, ProjectileMechanicTracker tracker, Location loc, FightData barrierOwner) {
+		if (b == null) return;
+		
+		if (b.collides(loc)) {
+			tracker.projectileEnd();
+			tracker.setCancelled();
+			loc.getWorld().playSound(loc, Sound.ITEM_SHIELD_BLOCK, 1F, 1F);
+		}
+		
+		if (barrierOwner == null) return;
+		
+		HashSet<AbstractEntity> targets = new HashSet<AbstractEntity>();
+		targets.add(BukkitAdapter.adapt(barrierOwner.getEntity()));
+		
+		if (skill == null) return;
+		skill.execute(SkillTrigger.get("API"), data.getCaster(), data.getTrigger(),
+				data.getCaster().getLocation(), targets, null, 1F);
 	}
 }
