@@ -3,6 +3,7 @@ package me.neoblade298.neomythicextension.mechanics;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -17,10 +18,10 @@ import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.api.skills.ThreadSafetyLevel;
 import io.lumine.mythic.bukkit.MythicBukkit;
 import me.neoblade298.neorogue.equipment.mechanics.Barrier;
-import me.neoblade298.neorogue.session.fights.Buff;
-import me.neoblade298.neorogue.session.fights.BuffType;
-import me.neoblade298.neorogue.session.fights.FightData;
-import me.neoblade298.neorogue.session.fights.FightInstance;
+import me.neoblade298.neorogue.session.fight.FightData;
+import me.neoblade298.neorogue.session.fight.FightInstance;
+import me.neoblade298.neorogue.session.fight.buff.Buff;
+import me.neoblade298.neorogue.session.fight.buff.BuffType;
 
 public class NeoRogueBarrier implements ITargetedEntitySkill {
 	protected final Skill counterSkill, hitSkill;
@@ -28,6 +29,8 @@ public class NeoRogueBarrier implements ITargetedEntitySkill {
 	protected final int duration;
 	protected final HashMap<BuffType, Double> buffs = new HashMap<BuffType, Double>();
 	protected final String id;
+	
+	protected static final HashMap<String, UUID> barrierIds = new HashMap<String, UUID>();
 
     @Override
     public ThreadSafetyLevel getThreadSafetyLevel() {
@@ -70,7 +73,8 @@ public class NeoRogueBarrier implements ITargetedEntitySkill {
 				buffs.put(ent.getKey(), new Buff(owner.getUniqueId(), 0, ent.getValue()));
 			}
 			Barrier b = new Barrier((LivingEntity) data.getCaster().getEntity().getBukkitEntity(), width, forward, height, forwardOffset, buffs, true);
-			fd.getInstance().addBarrier(fd, id, b, duration, false);
+			fd.getInstance().addBarrier(fd, b, duration, false);
+			barrierIds.put(id, b.getUniqueId());
 			return SkillResult.SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();

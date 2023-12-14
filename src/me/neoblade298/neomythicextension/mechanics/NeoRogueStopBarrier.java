@@ -7,8 +7,8 @@ import io.lumine.mythic.api.skills.ITargetedEntitySkill;
 import io.lumine.mythic.api.skills.SkillMetadata;
 import io.lumine.mythic.api.skills.SkillResult;
 import io.lumine.mythic.api.skills.ThreadSafetyLevel;
-import me.neoblade298.neorogue.session.fights.FightData;
-import me.neoblade298.neorogue.session.fights.FightInstance;
+import me.neoblade298.neorogue.session.fight.FightData;
+import me.neoblade298.neorogue.session.fight.FightInstance;
 
 public class NeoRogueStopBarrier implements ITargetedEntitySkill {
 	protected final String id;
@@ -28,7 +28,7 @@ public class NeoRogueStopBarrier implements ITargetedEntitySkill {
 			Entity owner = target.getBukkitEntity();
 			FightData fd = FightInstance.getFightData(owner.getUniqueId());
 			if (fd == null) return SkillResult.INVALID_TARGET;
-			fd.getInstance().removeBarrier(fd, id);
+			fd.getInstance().removeEnemyBarrier(NeoRogueBarrier.barrierIds.get(id));
 			return SkillResult.SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
