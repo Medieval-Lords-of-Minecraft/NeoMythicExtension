@@ -122,9 +122,6 @@ public class MythicExt extends JavaPlugin implements Listener {
 		case "hasaccounttag":
 			condition = new HasAccountTagCondition(cfg);
 			break;
-		case "hitbarrier":
-			condition = new HitBarrierCondition(cfg);
-			break;
 		}
 		if (condition != null) {
 			event.register(condition);
